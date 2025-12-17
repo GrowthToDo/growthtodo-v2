@@ -1,113 +1,254 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
 
-// Update these once and forget about it
-const APPLY_LINK = "mailto:gauthamail@gmail.com?subject=Consulting%20%E2%80%94%20Clarity%20Sprint";
-const CONNECT_LINK = "mailto:gauthamail@gmail.com?subject=Consulting%20Question";
+const CONTACT_LINK = "mailto:gauthamail@gmail.com";
 
-// Structured offers (v1). We’ll refine pricing + details later.
-const offers = [
+// Engagement types = your productized offers.
+// Keep these sharp and specific. This is what converts.
+const engagements = [
   {
     title: "Clarity Sprint",
-    badge: "START HERE",
-    desc:
-      "A focused working session to untangle the mess, find the real bottleneck, and leave with a prioritised to-do list for the next 2–6 weeks.",
-    url: APPLY_LINK,
+    badge: "CORE",
+    duration: "60–90 min working session",
+    forWho: "Founders who are stuck, overwhelmed, or second-guessing their next moves.",
+    outcome: "A crisp diagnosis + a prioritised, sequenced to-do list for the next 2–4 weeks.",
+    topics: ["Positioning & messaging", "Prioritisation & sequencing", "Go-to-market bottlenecks", "Founder operating system"],
+    ctaText: "Apply for a Clarity Sprint",
+    ctaLink: "/clarity-sprint",
   },
   {
-    title: "Execution Support (4 weeks)",
-    badge: "LIMITED",
-    desc:
-      "Weekly working sessions + async feedback to help you execute the plan. Designed for founders who want follow-through, not just insight.",
-    url: APPLY_LINK,
+    title: "Reverse Engineer Product–Market Fit",
+    badge: "WORKSHOP / 1:1",
+    duration: "90–120 min (or split across 2 sessions)",
+    forWho: "Early-stage founders with unclear demand signals or noisy feedback loops.",
+    outcome: "A PMF scorecard + testable hypotheses + the next 3 experiments to run.",
+    topics: ["ICP definition", "Jobs-to-be-done & pains", "Offer + pricing pressure test", "Distribution reality check"],
+    ctaText: "Ask about PMF",
+    ctaLink: CONTACT_LINK,
   },
   {
-    title: "Go-to-Market Reset",
-    badge: "POPULAR",
-    desc:
-      "Positioning, messaging, channel strategy, and a concrete experiment plan. Ideal if you’re not sure who it’s for, why it wins, or how to sell it.",
-    url: APPLY_LINK,
+    title: "4-Week Follow-through",
+    badge: "OPTIONAL",
+    duration: "4 weeks",
+    forWho: "Founders who want help executing the plan (not just thinking about it).",
+    outcome: "Weekly cadence + execution support to ship the plan with momentum.",
+    topics: ["Weekly planning + review", "Constraint-based execution", "Decision support", "Accountability without theatre"],
+    ctaText: "Ask about follow-through",
+    ctaLink: CONTACT_LINK,
+  },
+];
+
+// Paste LinkedIn URLs for each person below.
+const testimonials = [
+  {
+    name: "Saishree Bandekar",
+    linkedin: "#",
+    title: "Founder, Purple Bakehouse",
+    quote:
+      "He helped me get to the root of my problems and made intimidating things feel learnable — the mindset shift in one hour was essential.",
   },
   {
-    title: "Founder Systems & Delegation",
-    desc:
-      "If you’re overwhelmed: we redesign your operating system — what you do, what you delegate, and how you build leverage without chaos.",
-    url: APPLY_LINK,
+    name: "Andre Schaffer",
+    linkedin: "#",
+    title: "First-time founder",
+    quote:
+      "He helped me prioritise demand over infrastructure early — saving months of unnecessary work and preventing wasted spend.",
+  },
+  {
+    name: "Pradeep Pandey",
+    linkedin: "#",
+    title: "Product builder",
+    quote:
+      "He transformed my approach to product development in 3 days — turning scattered ideas into structured, actionable steps.",
+  },
+  {
+    name: "Abhishek Bose",
+    linkedin: "#",
+    title: "Founder",
+    quote:
+      "He can point out something in a 30-minute call that might take you a year to figure out on your own.",
   },
 ];
 ---
 
 <BaseLayout title="Consulting" sideBarActiveItemID="consulting">
-  <!-- HERO / EXPLAINER -->
+  <!-- HERO -->
   <section class="mt-2">
     <div class="text-3xl w-full font-bold">Consulting</div>
 
     <div class="mt-4 space-y-4">
       <p class="text-lg">
-        Most founders don’t need another framework. They need clarity — and a ruthless to-do list they can actually execute.
+        Growth To Do is execution-first consulting for founders building internet-first businesses.
+        We cut through noise, find the real bottleneck, and turn clarity into a sequenced to-do list you can execute.
       </p>
 
-      <p class="text-lg">
-        I work like a founder–operator: we go deep into your context, identify the real bottleneck (not the symptoms),
-        and translate that into a clear plan with priorities, sequencing, and next actions.
-      </p>
-
-      <div class="mt-6 flex flex-wrap gap-4">
-        <a class="btn" href={APPLY_LINK}>Apply for a Clarity Sprint</a>
-        <a class="btn btn-outline" href={CONNECT_LINK}>Ask a question</a>
+      <div class="flex flex-wrap gap-3 pt-2">
+        <a class="btn" href="/clarity-sprint">Apply for a Clarity Sprint</a>
+        <a class="btn btn-outline" href={CONTACT_LINK}>Ask a question</a>
       </div>
 
-      <div class="mt-6">
-        <div class="text-sm text-slate-500">
-          Good fit: internet-first businesses (SaaS, D2C, education, content, info-products).
-          Not a fit: offline/ops-heavy businesses or fundraising intros.
+      <p class="text-sm opacity-75">
+        <span class="font-semibold">Good fit:</span> internet-first businesses (SaaS, D2C, education, content, info-products).
+        <span class="ml-1 font-semibold">Not a fit:</span> offline / ops-heavy businesses or fundraising intros.
+      </p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (GRAPHIC) -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-4">How it works</div>
+
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
+      <div class="grid gap-4 md:grid-cols-4">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-full bg-base-200 flex items-center justify-center font-bold">1</div>
+            <div>
+              <div class="font-bold">You share context</div>
+              <div class="text-sm opacity-80 mt-1">A short note on the business, traction, and what’s stuck.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-full bg-base-200 flex items-center justify-center font-bold">2</div>
+            <div>
+              <div class="font-bold">We do a working session</div>
+              <div class="text-sm opacity-80 mt-1">Diagnose, challenge assumptions, and find the root cause.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-full bg-base-200 flex items-center justify-center font-bold">3</div>
+            <div>
+              <div class="font-bold">You leave with a plan</div>
+              <div class="text-sm opacity-80 mt-1">A prioritised to-do list + sequencing for the next few weeks.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-full bg-base-200 flex items-center justify-center font-bold">4</div>
+            <div>
+              <div class="font-bold">Optional follow-through</div>
+              <div class="text-sm opacity-80 mt-1">If you want, we work together for ~4 weeks to execute.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 text-sm opacity-70">
+        Output is always something you can execute: a plan, a list, a sequence — not a PDF.
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENT TYPES (KEEP THESE) -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-4">Engagement types</div>
+
+    <div class="grid gap-4 md:grid-cols-3">
+      {engagements.map((e) => (
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
+          <div class="flex items-start justify-between gap-3">
+            <div class="text-xl font-bold">{e.title}</div>
+            <div class="badge badge-outline">{e.badge}</div>
+          </div>
+
+          <div class="mt-2 text-sm opacity-75">{e.duration}</div>
+
+          <div class="mt-4 space-y-3">
+            <div>
+              <div class="font-semibold">Best for</div>
+              <div class="text-sm opacity-80">{e.forWho}</div>
+            </div>
+
+            <div>
+              <div class="font-semibold">Outcome</div>
+              <div class="text-sm opacity-80">{e.outcome}</div>
+            </div>
+
+            <div>
+              <div class="font-semibold">Common topics</div>
+              <ul class="mt-2 text-sm opacity-80 list-disc pl-5 space-y-1">
+                {e.topics.map((t) => <li>{t}</li>)}
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <a class="btn btn-sm" href={e.ctaLink}>
+                {e.ctaText}
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-5 text-sm opacity-70">
+      If you’re unsure which one fits, just email context — I’ll route you to the right starting point.
+    </div>
+  </section>
+
+  <!-- QUALIFYING CTA STRIP (RETAIN THIS) -->
+  <section class="mt-12">
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap gap-3">
+          <a class="btn" href="/clarity-sprint">Apply for a Clarity Sprint</a>
+          <a class="btn btn-outline" href={CONTACT_LINK}>Ask a question</a>
+        </div>
+
+        <div class="text-sm opacity-75 max-w-2xl">
+          <span class="font-semibold">Good fit:</span> internet-first businesses (SaaS, D2C, education, content, info-products).
+          <span class="ml-1 font-semibold">Not a fit:</span> offline / ops-heavy businesses or fundraising intros.
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- TESTIMONIALS (LINKEDIN-LINKED NAMES) -->
   <section class="mt-12">
-    <div class="text-2xl font-bold mb-3">How it works</div>
+    <div class="text-2xl font-bold mb-4">Testimonials</div>
 
-    <div class="space-y-3 text-lg">
-      <p><b>1) You share context.</b> A short note about the business, current traction, and what’s stuck.</p>
-      <p><b>2) We do a working session.</b> We diagnose, challenge assumptions, and get to the root cause.</p>
-      <p><b>3) You leave with a plan.</b> A prioritised to-do list + clear sequencing for the next few weeks.</p>
-      <p><b>4) Optional follow-through.</b> If you want, we work together for 4 weeks to execute.</p>
+    <div class="grid gap-4">
+      {testimonials.map((t) => (
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <a
+              href={t.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-bold link link-hover"
+              title="Open LinkedIn"
+            >
+              {t.name}
+            </a>
+            <div class="text-sm opacity-70">{t.title}</div>
+          </div>
+
+          <div class="mt-3 text-lg leading-relaxed">“{t.quote}”</div>
+        </div>
+      ))}
     </div>
-  </section>
 
-  <!-- STRUCTURED OFFERS -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-5">Engagements</div>
-
-    {offers.map((o, idx) => (
-      <>
-        <HorizontalCard
-          title={o.title}
-          img="/post_img.webp"
-          desc={o.desc}
-          badge={o.badge}
-          url={o.url}
-          target="_self"
-        />
-        {idx !== offers.length - 1 && <div class="divider my-0"></div>}
-      </>
-    ))}
-  </section>
-
-  <!-- CTA -->
-  <section class="mt-12">
-    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-      <div class="text-xl font-bold">Ready to get unstuck?</div>
+    <div class="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+      <div class="text-xl font-bold">Want to work together?</div>
       <p class="mt-2 text-lg">
-        Send a short note about what you’re building and where you’re stuck. If I can help, I’ll reply with next steps.
+        Email me a short note with your context + what’s stuck. I’ll tell you if I can help and what the best first step is.
       </p>
-      <div class="mt-5">
-        <a class="btn" href={APPLY_LINK}>Apply for a Clarity Sprint</a>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a class="btn" href="/clarity-sprint">Apply for a Clarity Sprint</a>
+        <a class="btn btn-outline" href={CONTACT_LINK}>Ask a question</a>
       </div>
+      <p class="mt-3 text-sm opacity-70">
+        If you send 5 lines with: what you sell, who you sell to, current traction, what’s stuck, and what you’ve tried —
+        I can be decisive fast.
+      </p>
     </div>
   </section>
 </BaseLayout>

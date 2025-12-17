@@ -2,10 +2,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 
-// You’ll edit these lists over time.
-// Keep them here so you don’t have to hunt through JSX later.
-
-const currentProjects = [
+// Active: only what’s live + being operated right now
+const activeProjects = [
+  {
+    title: "SellOnTube",
+    img: "/post_img.webp",
+    desc: "YouTube-first customer acquisition for internet businesses in a Done-For-You model.",
+    url: "https://sellontube.com",
+    badge: "ACTIVE",
+  },
   {
     title: "The Second Design",
     img: "/post_img.webp",
@@ -14,24 +19,20 @@ const currentProjects = [
     url: "https://theseconddesign.com",
     badge: "ACTIVE",
   },
-  {
-    title: "SellOnTube",
-    img: "/post_img.webp",
-    desc:
-      "YouTube-first customer acquisition for internet businesses. Strategy, execution, and productization around bottom-of-funnel video content.",
-    url: "https://sellontube.com",
-    badge: "ACTIVE",
-  },
+];
+
+// Upcoming: in progress / building
+const upcomingProjects = [
   {
     title: "Turpentine Academy",
     img: "/post_img.webp",
     desc:
-      "Workshops and playbooks for founders on clarity, execution, marketing, and leverage. Built from real projects, not theory.",
+      "Workshops and playbooks for founders on clarity, execution, marketing, and leverage — built from real projects, not theory.",
     url: "/academy",
-    badge: "BUILDING",
+    badge: "UPCOMING",
   },
   {
-    title: "US Nurse Scheduling Product",
+    title: "Healthcare Staff Scheduling Project",
     img: "/post_img.webp",
     desc:
       "A product-in-progress for US healthcare scheduling, focused on reducing operational chaos, overtime, and burnout.",
@@ -40,21 +41,36 @@ const currentProjects = [
   },
 ];
 
+// Past: completed / previous chapters
 const pastProjects = [
   {
-    title: "VC-backed Education Company",
+    title: "HowToCBC",
     img: "/post_img.webp",
-    desc:
-      "Built and ran a VC-backed education company in India for nearly 8 years. Scaled programs, teams, and operations across multiple cohorts.",
+    desc: "Cohort-based learning initiative focused on structured learning and outcomes-driven programs.",
     url: "#",
+    badge: "PAST",
   },
   {
-    title: "Startup Village Collective / Pupilfirst",
+    title: "Pupilfirst",
+    img: "/post_img.webp",
+    desc: "Built and ran an education product/company focused on cohort-based learning and learning operations.",
+    url: "#",
+    badge: "PAST",
+  },
+  {
+    title: "Startup Village Collective (SV.CO)",
     img: "/post_img.webp",
     desc:
-      "Early-stage founder education and incubation. Worked with students and professionals to build real-world skills and products.",
+      "Early-stage founder education and incubation — helping students and professionals build real products and skills.",
     url: "#",
-    badge: "FOSS",
+    badge: "PAST",
+  },
+  {
+    title: "SV Labs",
+    img: "/post_img.webp",
+    desc: "An experimental builder arm — shipping projects, prototypes, and tools in the early ecosystem days.",
+    url: "#",
+    badge: "PAST",
   },
 ];
 ---
@@ -69,17 +85,16 @@ const pastProjects = [
         I build internet-first businesses — some as experiments, some as serious long-term bets.
       </p>
       <p class="text-lg">
-        This page is a snapshot of what I’m actively working on right now, and what I’ve built in the past
-        across products, education, and founder ecosystems.
+        This page is a snapshot of what I’m actively running, what’s coming next, and what I’ve built in the past.
       </p>
     </div>
   </section>
 
-  <!-- CURRENT PROJECTS -->
+  <!-- ACTIVE PROJECTS -->
   <section class="mt-12">
-    <div class="text-2xl font-bold mb-5">Current projects</div>
+    <div class="text-2xl font-bold mb-5">Active</div>
 
-    {currentProjects.map((p, idx) => (
+    {activeProjects.map((p, idx) => (
       <>
         <HorizontalCard
           title={p.title}
@@ -89,7 +104,26 @@ const pastProjects = [
           badge={p.badge}
           target={p.url.startsWith("http") ? "_blank" : "_self"}
         />
-        {idx !== currentProjects.length - 1 && <div class="divider my-0"></div>}
+        {idx !== activeProjects.length - 1 && <div class="divider my-0"></div>}
+      </>
+    ))}
+  </section>
+
+  <!-- UPCOMING PROJECTS -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-5">Upcoming</div>
+
+    {upcomingProjects.map((p, idx) => (
+      <>
+        <HorizontalCard
+          title={p.title}
+          img={p.img}
+          desc={p.desc}
+          url={p.url}
+          badge={p.badge}
+          target={p.url.startsWith("http") ? "_blank" : "_self"}
+        />
+        {idx !== upcomingProjects.length - 1 && <div class="divider my-0"></div>}
       </>
     ))}
   </section>
@@ -106,7 +140,7 @@ const pastProjects = [
           desc={p.desc}
           url={p.url}
           badge={p.badge}
-          target="_self"
+          target={p.url.startsWith("http") ? "_blank" : "_self"}
         />
         {idx !== pastProjects.length - 1 && <div class="divider my-0"></div>}
       </>

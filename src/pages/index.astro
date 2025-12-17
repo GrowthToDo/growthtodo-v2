@@ -10,14 +10,12 @@ const posts = (await getCollection("blog")).sort(
 
 const last_posts = posts.slice(0, 3);
 
-// ---- EDIT THESE 3 LINKS ONCE AND YOU'RE DONE ----
-const CONNECT_LINK = "mailto:gautham@growthtodo.com"; // change if needed
-const PROJECTS_PAGE = "/projects"; // create later
+// ---- EDIT THESE LINKS ONCE AND YOU'RE DONE ----
+const CONNECT_LINK = "mailto:gautham@growthtodo.com";
 const BLOG_PAGE = "/blog";
-// --------------------------------------------------
+// ------------------------------------------------
 
-// Current projects (v1) — we’ll later source these from a data file.
-// For now: hardcode so you can ship today.
+// Only 2 active projects on homepage (in this order)
 const currentProjects = [
   {
     title: "SellOnTube",
@@ -28,20 +26,12 @@ const currentProjects = [
     badge: "ACTIVE",
   },
   {
-    title: "Turpentine Academy",
+    title: "The Second Design",
     img: "/post_img.webp",
     desc:
-      "Practical workshops and playbooks for founders — clarity, execution, marketing, and leverage.",
-    url: "/academy",
-    badge: "BUILDING",
-  },
-  {
-    title: "US Nurse Scheduling Product",
-    img: "/post_img.webp",
-    desc:
-      "A serious product bet in US healthcare scheduling — reducing chaos, overtime, and operational stress.",
-    url: "#",
-    badge: "R&D",
+      "An education design studio — curriculum, cohort-based learning, facilitator training, and transformational learning environments.",
+    url: "https://theseconddesign.com",
+    badge: "ACTIVE",
   },
 ];
 ---
@@ -71,10 +61,6 @@ const currentProjects = [
     <div class="mt-8 flex flex-wrap gap-4">
       <a class="btn" href={CONNECT_LINK}>Let's connect</a>
 
-      <a class="btn btn-outline" href={PROJECTS_PAGE}>
-        See current projects
-      </a>
-
       <a class="btn btn-outline" href={BLOG_PAGE}>
         Read the blog
       </a>
@@ -83,7 +69,7 @@ const currentProjects = [
 
   <!-- CURRENT PROJECTS -->
   <div class="flex items-end justify-between gap-4">
-    <div class="text-3xl w-full font-bold mb-2">Current projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-2">Current projects</div>
   </div>
 
   {currentProjects.map((p, idx) => (
@@ -94,17 +80,11 @@ const currentProjects = [
         desc={p.desc}
         url={p.url}
         badge={p.badge}
-        target={p.url.startsWith("http") ? "_blank" : "_self"}
+        target="_blank"
       />
       {idx !== currentProjects.length - 1 && <div class="divider my-0"></div>}
     </>
   ))}
-
-  <div class="mt-4">
-    <a class="link link-hover text-sm" href={PROJECTS_PAGE}>
-      View current + past projects →
-    </a>
-  </div>
 
   <!-- LATEST BLOG -->
   <div>

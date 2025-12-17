@@ -2,6 +2,139 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const CONTACT_LINK = "mailto:gauthamail@gmail.com";
+
+type TimelineItem = {
+  id: string;
+  years: string;
+  org: string;
+  role: string;
+  location?: string;
+  url?: string;
+  highlights: string[];
+  links?: { label: string; href: string }[];
+  badge?: "NOW" | "PAST";
+};
+
+const timeline: TimelineItem[] = [
+  {
+    id: "sellontube",
+    years: "Dec 2025 — Present",
+    org: "SellOnTube",
+    role: "Founder",
+    url: "https://sellontube.com",
+    badge: "NOW",
+    highlights: [
+      "YouTube-first customer acquisition for internet-first businesses (done-for-you).",
+      "Focus: bottom-of-funnel videos, positioning, and repeatable distribution systems.",
+    ],
+    links: [{ label: "Website", href: "https://sellontube.com" }],
+  },
+  {
+    id: "startglobal",
+    years: "Sep 2022 — Present",
+    org: "StartGlobal.co",
+    role: "COO (focus: user growth)",
+    url: "https://startglobal.co",
+    badge: "NOW",
+    highlights: [
+      "Scaled team and set up a more professional operating structure.",
+      "Took over user growth focus in 2024; early traction via SEO.",
+      "Learned what scales (and what doesn’t) in ads vs. organic growth loops.",
+    ],
+    links: [{ label: "Website", href: "https://startglobal.co" }],
+  },
+  {
+    id: "theseconddesign",
+    years: "Sep 2022 — Present",
+    org: "The Second Design",
+    role: "Founder (Education design studio)",
+    url: "https://theseconddesign.com",
+    badge: "NOW",
+    highlights: [
+      "Designs transformational learning environments: curriculum, cohorts, facilitation, learning cadence.",
+      "Work spans students, professionals, communities, and partner-led programs.",
+    ],
+    links: [{ label: "Website", href: "https://theseconddesign.com" }],
+  },
+
+  {
+    id: "howtocbc",
+    years: "Jul 2021 — Sep 2022",
+    org: "HowToCBC.com",
+    role: "Co-founder",
+    badge: "PAST",
+    highlights: [
+      "Validated the CBC platform idea by becoming the power user first.",
+      "Built deep expertise in cohort-based course creation + distribution realities.",
+      "Partnered with multiple CBC platforms; learned internet outreach + marketing.",
+    ],
+  },
+  {
+    id: "pupilfirst",
+    years: "2019 — 2021",
+    org: "Pupilfirst.org",
+    role: "Co-founder & Director",
+    badge: "PAST",
+    highlights: [
+      "Pivoted from incubation to education (developer school direction).",
+      "Built industry–academia partnerships across universities; collaborated with major partners.",
+      "Built and open-sourced an LMS; iterated heavily across years of learning models.",
+    ],
+  },
+  {
+    id: "svco",
+    years: "2015 — 2019",
+    org: "SV.CO (Startup Village Collective)",
+    role: "Co-founder & COO",
+    badge: "PAST",
+    highlights: [
+      "Raised funding to scale a digital incubator platform built at SV Labs.",
+      "Incubated 100+ student teams via cohort-style programs across India.",
+      "Learned hard lessons about sustainability, business models, and distribution.",
+    ],
+  },
+  {
+    id: "svlabs",
+    years: "2013 — 2015",
+    org: "SV Labs",
+    role: "CEO",
+    badge: "PAST",
+    highlights: [
+      "Built the digital platform that became the future of the incubator work.",
+      "Helped move incubation services from physical-heavy to online-first operations.",
+      "Shipped fast, learned faster—classic builder/operator chapter.",
+    ],
+  },
+  {
+    id: "mobme",
+    years: "2009 — 2013",
+    org: "Mobme",
+    role: "Leadership (early team / operator)",
+    badge: "PAST",
+    highlights: [
+      "Joined early and wore every hat: biz-dev, ops, sales, strategy, client relations, hiring, growth.",
+      "Joined as employee #1 for a new division; grew it into the top revenue vertical.",
+      "Learned the cost of missing platform shifts while executing relentlessly.",
+    ],
+  },
+];
+
+const education = [
+  {
+    title: "Write of Passage (Cohort 8)",
+    meta:
+      "Personally invited by David Perell with a 95% scholarship. A writing-first program focused on clarity of thinking — easily the best educational experience I’ve been part of.",
+  },
+  {
+    title: "Maven Accelerator Program (Cohort 3)",
+    meta:
+      "Selected as part of a highly selective cohort of 145 instructors across 27 countries and 100+ cities (from 2,000+ applicants). One of the first 75 courses launched on Maven.com alongside top creators in 2021.",
+  },
+   {
+    title: "B.Tech — Applied Electronics & Instrumentation",
+    meta: "College of Engineering, Trivandrum (CET) — 2009",
+  },
+];
 ---
 
 <BaseLayout title="CV" sideBarActiveItemID="cv">
@@ -11,110 +144,147 @@ const CONTACT_LINK = "mailto:gauthamail@gmail.com";
 
     <div class="mt-4 space-y-4">
       <p class="text-lg">
-        I’m a founder–operator who has spent the last 15+ years building, running, and learning from
-        internet-first businesses — across education, software, and consulting.
+        Founder–operator across education, software, and consulting. I build internet-first businesses,
+        and I’m unusually good at turning messy ambiguity into an executable plan.
       </p>
-      <p class="text-lg">
-        This is a short, honest snapshot of what I’ve done, what I’m doing now, and what I’m good at.
-      </p>
-    </div>
-  </section>
 
-  <!-- CURRENT -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-4">What I’m doing now</div>
-
-    <ul class="space-y-3 text-lg list-disc pl-6">
-      <li>
-        Running <b>The Second Design</b>, an education design studio focused on cohort-based learning,
-        curriculum design, and training educators to build effective learning environments.
-      </li>
-      <li>
-        Building and operating <b>SellOnTube</b>, a YouTube-first customer acquisition system for internet businesses.
-      </li>
-      <li>
-        Running <b>Turpentine Academy</b>, where I turn real business learning into practical workshops and playbooks.
-      </li>
-      <li>
-        Working on a <b>US healthcare nurse scheduling product</b> — a long-term SaaS bet focused on operations and burnout reduction.
-      </li>
-      <li>
-        Consulting with founders to help them cut through noise, find the real bottleneck, and execute with clarity.
-      </li>
-    </ul>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-4">Experience</div>
-
-    <div class="space-y-6 text-lg">
-      <div>
-        <div class="font-semibold">The Second Design</div>
-        <div class="text-sm text-slate-500">Founder — 2021 to present</div>
-        <p class="mt-1">
-          Built and operated an education design studio working with students, professionals, and organisations to design
-          high-quality learning experiences — including curriculum design, learning cadence, and facilitator training.
-        </p>
-      </div>
-
-      <div>
-        <div class="font-semibold">VC-backed Education Company</div>
-        <div class="text-sm text-slate-500">Founder / Operator — ~8 years</div>
-        <p class="mt-1">
-          Built and ran a venture-backed education company in India. Designed programs, built teams,
-          scaled operations, and worked closely with students, professionals, and partners.
-        </p>
-      </div>
-
-      <div>
-        <div class="font-semibold">Startup Village Collective / Pupilfirst</div>
-        <div class="text-sm text-slate-500">Co-founder / Early Operator</div>
-        <p class="mt-1">
-          Worked on early-stage founder education and incubation. Helped students and professionals
-          learn by building real products, not just studying theory.
-        </p>
+      <div class="flex flex-wrap gap-3 pt-1">
+        <a class="btn" href={CONTACT_LINK}>Email me</a>
+        <a class="btn btn-outline" href="/projects">Projects</a>
+        <a class="btn btn-outline" href="/consulting">Consulting</a>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- TIMELINE -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-5">Timeline</div>
+
+    <div class="relative">
+      <!-- Vertical line -->
+      <div class="hidden md:block absolute left-[10.5rem] top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800"></div>
+
+      <div class="space-y-8">
+        {timeline.map((item) => (
+          <div class="grid gap-3 md:grid-cols-[10rem_1fr] md:gap-6">
+            {/* Years */}
+            <div class="md:text-right">
+              <div class="text-sm opacity-70">{item.years}</div>
+              {item.badge === "NOW" && (
+                <div class="mt-2 inline-flex md:justify-end w-full">
+                  <span class="badge">NOW</span>
+                </div>
+              )}
+            </div>
+
+            {/* Entry */}
+            <div class="relative">
+              {/* Dot */}
+              <div class="hidden md:block absolute -left-[0.9rem] top-2 w-3 h-3 rounded-full bg-base-100 border border-slate-300 dark:border-slate-700"></div>
+
+              <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-base-100 p-6">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                  <div class="space-y-1">
+                    <div class="text-xl font-bold">
+                      {item.url ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="link link-hover"
+                          title="Open website"
+                        >
+                          {item.org}
+                        </a>
+                      ) : (
+                        item.org
+                      )}
+                    </div>
+                    <div class="text-sm opacity-75">{item.role}</div>
+                    {item.location && <div class="text-sm opacity-70">{item.location}</div>}
+                  </div>
+
+                  {item.badge && item.badge !== "NOW" && (
+                    <div class="badge badge-outline">{item.badge}</div>
+                  )}
+                </div>
+
+                <ul class="mt-4 space-y-2 text-lg list-disc pl-6">
+                  {item.highlights.map((h) => (
+                    <li>{h}</li>
+                  ))}
+                </ul>
+
+                {item.links?.length ? (
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    {item.links.map((l) => (
+                      <a
+                        class="btn btn-sm btn-outline"
+                        href={l.href}
+                        target={l.href.startsWith("http") ? "_blank" : "_self"}
+                        rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      >
+                        {l.label}
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS (KEEP IT TIGHT) -->
   <section class="mt-12">
     <div class="text-2xl font-bold mb-4">What I’m good at</div>
 
-    <ul class="space-y-2 text-lg list-disc pl-6">
-      <li>Breaking complex problems into clear, actionable plans</li>
-      <li>Product thinking and product–market fit diagnosis</li>
-      <li>Go-to-market strategy for internet-first businesses</li>
-      <li>Education design: curriculum, cohorts, learning cadence</li>
-      <li>Founder operating systems, delegation, and leverage</li>
-      <li>Writing and teaching to clarify thinking</li>
-    </ul>
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-base-100 p-6">
+        <div class="font-bold">Operator skills</div>
+        <ul class="mt-3 space-y-2 text-lg list-disc pl-6">
+          <li>Breaking complex problems into clear, executable sequences</li>
+          <li>Hiring, team design, operating cadence, and execution quality</li>
+          <li>Sales + customer conversations (the unglamorous truth source)</li>
+          <li>Growth systems: positioning → distribution → iteration loops</li>
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-base-100 p-6">
+        <div class="font-bold">Builder / educator skills</div>
+        <ul class="mt-3 space-y-2 text-lg list-disc pl-6">
+          <li>Education design: cohorts, curriculum, facilitation, learning environments</li>
+          <li>Writing-first clarity (thinking, communicating, aligning)</li>
+          <li>Product thinking: demand, ICP, PMF diagnostics, and ruthless prioritisation</li>
+          <li>Turning messy expertise into teachable, shippable assets</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <!-- CONTEXT -->
+  <!-- EDUCATION -->
   <section class="mt-12">
-    <div class="text-2xl font-bold mb-4">Context & constraints</div>
+    <div class="text-2xl font-bold mb-4">Education & programs</div>
 
-    <div class="space-y-3 text-lg">
-      <p>
-        I’ve worked across <b>VC-backed</b> and <b>bootstrapped</b> environments, with teams both large and small,
-        across India and the US market.
-      </p>
-      <p>
-        I don’t claim deep domain expertise in every industry. Where I add value is in the
-        <b>horizontal skills</b> that cut across businesses: clarity, execution, positioning, and systems.
-      </p>
+    <div class="grid gap-4">
+      {education.map((e) => (
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-base-100 p-6">
+          <div class="font-bold">{e.title}</div>
+          <div class="text-sm opacity-75 mt-1">{e.meta}</div>
+        </div>
+      ))}
     </div>
   </section>
 
   <!-- CTA -->
   <section class="mt-12">
-    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
       <div class="text-xl font-bold">Want to work together?</div>
       <p class="mt-2 text-lg">
-        If you’re building something internet-first and feel stuck or overwhelmed,
-        I’m happy to take a look.
+        Send a short note: what you’re building, current traction, and what’s stuck.
+        If you’re not a fit, I’ll tell you fast.
       </p>
       <div class="mt-5">
         <a class="btn" href={CONTACT_LINK}>Email me</a>
