@@ -56,7 +56,6 @@ const timeline: TimelineItem[] = [
     ],
     links: [{ label: "Website", href: "https://theseconddesign.com" }],
   },
-
   {
     id: "howtocbc",
     years: "Jul 2021 — Sep 2022",
@@ -130,7 +129,7 @@ const education = [
     meta:
       "Selected as part of a highly selective cohort of 145 instructors across 27 countries and 100+ cities (from 2,000+ applicants). One of the first 75 courses launched on Maven.com alongside top creators in 2021.",
   },
-   {
+  {
     title: "B.Tech — Applied Electronics & Instrumentation",
     meta: "College of Engineering, Trivandrum (CET) — 2009",
   },
@@ -161,78 +160,113 @@ const education = [
     <div class="text-2xl font-bold mb-5">Timeline</div>
 
     <div class="relative">
-      <!-- Vertical line -->
-      <div class="hidden md:block absolute left-[10.5rem] top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800"></div>
+      {/* Spine */}
+      <div
+        class="hidden md:block absolute left-[10.5rem] top-2 bottom-2 w-[2px] rounded-full
+               bg-gradient-to-b from-slate-200 via-slate-300 to-slate-200
+               dark:from-slate-800 dark:via-slate-700 dark:to-slate-800"
+      ></div>
 
-      <div class="space-y-8">
-        {timeline.map((item) => (
-          <div class="grid gap-3 md:grid-cols-[10rem_1fr] md:gap-6">
-            {/* Years */}
-            <div class="md:text-right">
-              <div class="text-sm opacity-70">{item.years}</div>
-              {item.badge === "NOW" && (
-                <div class="mt-2 inline-flex md:justify-end w-full">
-                  <span class="badge">NOW</span>
+      <div class="space-y-10">
+        {timeline.map((item) => {
+          const isNow = item.badge === "NOW";
+
+          return (
+            <div class="grid gap-3 md:grid-cols-[10rem_1fr] md:gap-6">
+              {/* Years */}
+              <div class="md:text-right md:pt-1">
+                <div class="inline-flex md:justify-end w-full">
+                  <div class="rounded-xl px-3 py-2 border border-slate-200 dark:border-slate-800 bg-base-100">
+                    <div class="text-sm font-medium tracking-tight">{item.years}</div>
+                    {isNow && (
+                      <div class="mt-2">
+                        <span class="badge">NOW</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              )}
-            </div>
+              </div>
 
-            {/* Entry */}
-            <div class="relative">
-              {/* Dot */}
-              <div class="hidden md:block absolute -left-[0.9rem] top-2 w-3 h-3 rounded-full bg-base-100 border border-slate-300 dark:border-slate-700"></div>
+              {/* Entry */}
+              <div class="relative">
+                {/* Node */}
+                <div class="hidden md:block absolute -left-[1.28rem] top-6">
+                  <div
+                    class={`relative w-5 h-5 rounded-full border-2 ${
+                      isNow ? "border-primary" : "border-slate-300 dark:border-slate-700"
+                    } bg-base-100`}
+                  >
+                    <div
+                      class={`absolute inset-[4px] rounded-full ${
+                        isNow ? "bg-primary" : "bg-slate-300 dark:bg-slate-600"
+                      }`}
+                    ></div>
 
-              <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-base-100 p-6">
-                <div class="flex flex-wrap items-start justify-between gap-3">
-                  <div class="space-y-1">
-                    <div class="text-xl font-bold">
-                      {item.url ? (
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="link link-hover"
-                          title="Open website"
-                        >
-                          {item.org}
-                        </a>
-                      ) : (
-                        item.org
-                      )}
+                    {isNow && (
+                      <div class="absolute inset-0 rounded-full animate-ping bg-primary/30"></div>
+                    )}
+                  </div>
+                </div>
+
+                <div
+                  class={`rounded-2xl border p-6 shadow-sm ${
+                    isNow
+                      ? "border-primary/30 bg-primary/5 dark:bg-primary/10"
+                      : "border-slate-200 dark:border-slate-800 bg-base-100"
+                  }`}
+                >
+                  <div class="flex flex-wrap items-start justify-between gap-3">
+                    <div class="space-y-1">
+                      <div class="text-[1.35rem] leading-tight font-bold">
+                        {item.url ? (
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link link-hover"
+                            title="Open website"
+                          >
+                            {item.org}
+                          </a>
+                        ) : (
+                          item.org
+                        )}
+                      </div>
+
+                      <div class="text-base opacity-80">{item.role}</div>
+                      {item.location && <div class="text-sm opacity-70">{item.location}</div>}
                     </div>
-                    <div class="text-sm opacity-75">{item.role}</div>
-                    {item.location && <div class="text-sm opacity-70">{item.location}</div>}
+
+                    {item.badge && !isNow && (
+                      <div class="badge badge-outline">{item.badge}</div>
+                    )}
                   </div>
 
-                  {item.badge && item.badge !== "NOW" && (
-                    <div class="badge badge-outline">{item.badge}</div>
-                  )}
-                </div>
-
-                <ul class="mt-4 space-y-2 text-lg list-disc pl-6">
-                  {item.highlights.map((h) => (
-                    <li>{h}</li>
-                  ))}
-                </ul>
-
-                {item.links?.length ? (
-                  <div class="mt-4 flex flex-wrap gap-3">
-                    {item.links.map((l) => (
-                      <a
-                        class="btn btn-sm btn-outline"
-                        href={l.href}
-                        target={l.href.startsWith("http") ? "_blank" : "_self"}
-                        rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      >
-                        {l.label}
-                      </a>
+                  <ul class="mt-4 space-y-2 text-[1.02rem] leading-relaxed list-disc pl-6 opacity-95">
+                    {item.highlights.map((h) => (
+                      <li>{h}</li>
                     ))}
-                  </div>
-                ) : null}
+                  </ul>
+
+                  {item.links?.length ? (
+                    <div class="mt-5 flex flex-wrap gap-3">
+                      {item.links.map((l) => (
+                        <a
+                          class="btn btn-sm btn-outline"
+                          href={l.href}
+                          target={l.href.startsWith("http") ? "_blank" : "_self"}
+                          rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        >
+                          {l.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
